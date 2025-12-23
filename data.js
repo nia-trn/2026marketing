@@ -39,42 +39,32 @@ const CONFIG = {
     { after: "sep", label: "★ Q3→Q4 GATE (CRITICAL)" }
   ],
 
-  stickyNotes: [
-    { text: "📝 Year 1 = Buying data, not just clicks. Full universe exploration.", type: "note" },
-    { text: "📝 75/25 WigFix vs Wig entry split is hypothetical — track and adjust.", type: "note" },
-    { text: "📝 40-day lag: Influencer dispatch → content live.", type: "note" },
-    { text: "📝 3-month WigFix → Wig conversion window is THE ENGINE.", type: "note" },
-    { text: "⚠️ July +45% MoM target is aggressive. Depends on showroom momentum.", type: "risk" },
-    { text: "⚠️ Q4 CPCs are 4x baseline. Budget must be reserved.", type: "risk" },
-    { text: "⚠️ Q3→Q4 Gate is CRITICAL. $157K holiday spend unlocks here.", type: "risk" },
-    { text: "📝 HSA/FSA approved — NO competitor has this. Feature everywhere.", type: "note" },
-    { text: "📝 Dynamic content by complexion/texture = Q4 build for BFCM.", type: "note" }
-  ]
+  stickyNotes: []
 };
 
 const TIERS = [
   {
     id: "acquisition",
     name: "TIER 1: ACQUISITION",
-    budget: "$473K Total Budget",
+    budget: "",
     color: "acquisition"
   },
   {
     id: "consideration", 
     name: "TIER 2: CONSIDERATION",
-    budget: "Nurture & Engagement",
+    budget: "",
     color: "consideration"
   },
   {
     id: "conversion",
     name: "TIER 3: CONVERSION", 
-    budget: "Purchase",
+    budget: "",
     color: "conversion"
   },
   {
     id: "retention",
     name: "TIER 4: RETENTION",
-    budget: "Lifetime Value", 
+    budget: "", 
     color: "retention"
   }
 ];
@@ -89,10 +79,10 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "N/A — Internal workstream",
     platforms: "Photography, Video, UGC, Polished Brand Assets (Merit + Loewe inspired)",
-    budget: "$65K",
+    budget: "$65K (14%)",
     role: "Creative assets for all channels",
     months: {
-      jan: { activity: "Assets for launch", intensity: 5, milestone: "★ Heavy" },
+      jan: { activity: "PDP assets", intensity: 5, milestone: "★ Heavy" },
       feb: { activity: "WigFix 2.0 creative", intensity: 4 },
       mar: { activity: "Ongoing", intensity: 3 },
       apr: { activity: "Showroom content", intensity: 4 },
@@ -115,7 +105,7 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "\"I need a quality wig\"\n\"wigs for alopecia\"\n\"comfortable wigs\"",
     platforms: "BIGGEST BUCKET\nBeauty, medical, utility, style keywords\nFull universe exploration → optimize",
-    budget: "~$135K",
+    budget: "~$135K (29%)",
     role: "Primary acquisition",
     months: {
       jan: { activity: "Warm up", intensity: 1 },
@@ -127,11 +117,11 @@ const SWIMLANES = [
       jul: { activity: "Scale", intensity: 4 },
       aug: { activity: "Pre-holiday", intensity: 4 },
       sep: { activity: "Pre-holiday", intensity: 4 },
-      oct: { activity: "4x CPCs", intensity: 5, milestone: "★ 4x CPCs" },
-      nov: { activity: "BFCM peak", intensity: 5 },
+      oct: { activity: "Pre-holiday", intensity: 5 },
+      nov: { activity: "BFCM peak", intensity: 5, milestone: "★ BFCM" },
       dec: { activity: "Holiday", intensity: 5 }
     },
-    milestones: "Feb: Full launch\nQ2: Find winning clusters\nQ4: 4x CPC budget",
+    milestones: "Feb: Full launch\nQ2: Find winning clusters\nNov: BFCM peak",
     dependencies: "Content assets ready\nHSA/FSA messaging approved",
     risk: "Miss high-intent traffic\nSlow data collection"
   },
@@ -141,7 +131,7 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "\"I've heard of The Renatural\"\n\"the renatural wigs\"",
     platforms: "Google Search: Brand terms\nDefense against competitors",
-    budget: "~$20K",
+    budget: "~$20K (4%)",
     role: "Brand defense",
     months: {
       jan: { activity: "Warm up", intensity: 2 },
@@ -167,7 +157,7 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "\"lace front wigs\"\n(we don't sell, but can bid)",
     platforms: "Google Search: Competitor terms\nConquest plays",
-    budget: "~$15K",
+    budget: "~$15K (3%)",
     role: "Conquest",
     months: {
       jan: { activity: "—", intensity: 0 },
@@ -194,7 +184,7 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "\"Show me options\"\nVisual discovery",
     platforms: "Google PMAX: Multiple asset groups\nVideo, text, images optimization",
-    budget: "~$20K",
+    budget: "~$20K (4%)",
     role: "Full optimization",
     months: {
       jan: { activity: "—", intensity: 0 },
@@ -220,7 +210,7 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "\"What's this WigFix thing?\"\n\"wig headband\"",
     platforms: "Google PMAX: Multiple asset groups for WigFix 2.0",
-    budget: "~$10K",
+    budget: "~$10K (2%)",
     role: "Entry point acquisition",
     months: {
       jan: { activity: "Warm up", intensity: 1 },
@@ -246,7 +236,7 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "\"This looks premium\"\n\"I've seen this brand\"",
     platforms: "Lookalikes (purchasers, ATC, email, video) + Advantage+\nUGC, Polished brand, Testimonials",
-    budget: "~$40K",
+    budget: "~$40K (8%)",
     role: "Cold acquisition",
     months: {
       jan: { activity: "—", intensity: 0 },
@@ -272,7 +262,7 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "\"$29 is low risk\"\n\"Let me try it\"",
     platforms: "Separate campaign\nLookalikes + Advantage+",
-    budget: "~$15K",
+    budget: "~$15K (3%)",
     role: "Entry point acquisition",
     months: {
       jan: { activity: "—", intensity: 0 },
@@ -298,7 +288,7 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "\"My favorite creator uses this\"\n\"I trust their recommendation\"",
     platforms: "Mid + Macro tiers\nWigFix 2.0 + Wigs\nHybrid comp (flat + affiliate)\nWhitelisting for paid",
-    budget: "$68K",
+    budget: "$68K (14%)",
     role: "Social proof + content",
     months: {
       jan: { activity: "—", intensity: 0 },
@@ -324,7 +314,7 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "\"I keep seeing this brand\"\n\"They're on my TV now\"",
     platforms: "Retargeting ONLY\nATC + high-intent visitors\nVibe.co / MNTN / Tatari / Roku",
-    budget: "$25K",
+    budget: "$25K (5%)",
     role: "Retargeting only",
     months: {
       jan: { activity: "—", intensity: 0 },
@@ -350,7 +340,7 @@ const SWIMLANES = [
     tier: "acquisition",
     customerThinking: "\"I read about this brand\"\n\"It was in [publication]\"",
     platforms: "Earned media, credibility\nProduct launches, Showroom, Gift guides",
-    budget: "$25K",
+    budget: "$25K (5%)",
     role: "Credibility + awareness",
     months: {
       jan: { activity: "WigFix 2.0 prep", intensity: 3 },
@@ -436,8 +426,8 @@ const SWIMLANES = [
     role: "Recovery + consideration",
     months: {
       jan: { activity: "—", intensity: 0 },
-      feb: { activity: "Launch", intensity: 3, milestone: "★ Launch" },
-      mar: { activity: "Ramp", intensity: 3 },
+      feb: { activity: "—", intensity: 0 },
+      mar: { activity: "Launch", intensity: 3, milestone: "★ Launch" },
       apr: { activity: "Ramp", intensity: 4 },
       may: { activity: "Scale", intensity: 4 },
       jun: { activity: "Scale", intensity: 4 },
@@ -448,7 +438,7 @@ const SWIMLANES = [
       nov: { activity: "BFCM", intensity: 5 },
       dec: { activity: "Holiday", intensity: 5 }
     },
-    milestones: "Feb: Retargeting live",
+    milestones: "Mar: Retargeting live",
     dependencies: "Site traffic to build audiences",
     risk: "Leaky funnel\nLost warm prospects"
   },
@@ -462,8 +452,8 @@ const SWIMLANES = [
     role: "Mid-funnel touchpoints",
     months: {
       jan: { activity: "—", intensity: 0 },
-      feb: { activity: "Launch", intensity: 2, milestone: "★ Launch" },
-      mar: { activity: "Ramp", intensity: 3 },
+      feb: { activity: "—", intensity: 0 },
+      mar: { activity: "Launch", intensity: 3, milestone: "★ Launch" },
       apr: { activity: "Ramp", intensity: 3 },
       may: { activity: "Scale", intensity: 3 },
       jun: { activity: "Scale", intensity: 3 },
@@ -474,7 +464,7 @@ const SWIMLANES = [
       nov: { activity: "Peak", intensity: 4 },
       dec: { activity: "Peak", intensity: 4 }
     },
-    milestones: "Feb: Launch",
+    milestones: "Mar: Launch",
     dependencies: "Video assets\nSite traffic",
     risk: "Missed mid-funnel touchpoints"
   },
@@ -515,8 +505,8 @@ const SWIMLANES = [
     role: "SMS for high-intent",
     months: {
       jan: { activity: "Build", intensity: 4 },
-      feb: { activity: "Build", intensity: 4 },
-      mar: { activity: "Flows live", intensity: 5, milestone: "★ Flows live" },
+      feb: { activity: "Optimized", intensity: 5, milestone: "★ Optimized" },
+      mar: { activity: "Ongoing", intensity: 3 },
       apr: { activity: "Optimize", intensity: 3 },
       may: { activity: "Optimize", intensity: 3 },
       jun: { activity: "Optimize", intensity: 3 },
@@ -527,7 +517,7 @@ const SWIMLANES = [
       nov: { activity: "BFCM", intensity: 5 },
       dec: { activity: "Holiday", intensity: 5 }
     },
-    milestones: "Mar: Cart abandon flows live",
+    milestones: "Feb: Cart abandon flows optimized",
     dependencies: "Klaviyo setup\nSMS enabled",
     risk: "Lost revenue from cart abandoners"
   },
@@ -541,8 +531,8 @@ const SWIMLANES = [
     role: "High-intent signal",
     months: {
       jan: { activity: "Optimize", intensity: 2 },
-      feb: { activity: "Optimize", intensity: 2 },
-      mar: { activity: "Free kit link", intensity: 3, milestone: "★ Free kit link" },
+      feb: { activity: "Free w/ quiz", intensity: 3, milestone: "★ Free w/ quiz" },
+      mar: { activity: "Optimize", intensity: 3 },
       apr: { activity: "Optimize", intensity: 3 },
       may: { activity: "Optimize", intensity: 3 },
       jun: { activity: "Optimize", intensity: 3 },
@@ -553,7 +543,7 @@ const SWIMLANES = [
       nov: { activity: "Dynamic live", intensity: 5, milestone: "★ Dynamic live" },
       dec: { activity: "BFCM", intensity: 5 }
     },
-    milestones: "Mar: Free Sample Kit with quiz\nQ4: Dynamic content by complexion/texture",
+    milestones: "Feb: Free Sample Kit with quiz\nQ4: Dynamic content by complexion/texture",
     dependencies: "Quiz functional\nEmail integration\nSample Kit inventory",
     risk: "Generic emails\nLower personalization"
   },
@@ -567,8 +557,8 @@ const SWIMLANES = [
     role: "Faster wig conversion path",
     months: {
       jan: { activity: "Available", intensity: 2 },
-      feb: { activity: "Available", intensity: 2 },
-      mar: { activity: "Free w/ quiz", intensity: 4, milestone: "★ Free w/ quiz" },
+      feb: { activity: "Free w/ quiz", intensity: 4, milestone: "★ Free w/ quiz" },
+      mar: { activity: "Optimize", intensity: 3 },
       apr: { activity: "Optimize", intensity: 3 },
       may: { activity: "Optimize", intensity: 3 },
       jun: { activity: "Optimize", intensity: 3 },
@@ -579,7 +569,7 @@ const SWIMLANES = [
       nov: { activity: "Optimize", intensity: 3 },
       dec: { activity: "Optimize", intensity: 3 }
     },
-    milestones: "Mar: Free Sample Kit with quiz completion",
+    milestones: "Feb: Free Sample Kit with quiz completion",
     dependencies: "Inventory\nQuiz integration",
     risk: "Missed high-intent signal\nSlower conversions"
   },
@@ -603,9 +593,9 @@ const SWIMLANES = [
       sep: { activity: "Scale", intensity: 4 },
       oct: { activity: "Scale", intensity: 4 },
       nov: { activity: "Scale", intensity: 4 },
-      dec: { activity: "Holiday events", intensity: 5 }
+      dec: { activity: "Holiday events", intensity: 5, milestone: "★ Holiday events" }
     },
-    milestones: "Apr: Showroom opens\nJul: +45% wig target (aggressive)",
+    milestones: "Apr: Showroom opens\nJul: +45% wig target (aggressive)\nDec: Holiday events",
     dependencies: "Showroom build complete\nStaff hired/trained",
     risk: "CRITICAL: July targets unrealistic\nMissed consultation revenue",
     riskLevel: "critical"
@@ -682,9 +672,9 @@ const SWIMLANES = [
     months: {
       jan: { activity: "—", intensity: 0 },
       feb: { activity: "—", intensity: 0 },
-      mar: { activity: "—", intensity: 0 },
-      apr: { activity: "Prep", intensity: 3 },
-      may: { activity: "LAUNCH", intensity: 5, milestone: "★ LAUNCH" },
+      mar: { activity: "Prep", intensity: 3 },
+      apr: { activity: "LAUNCH", intensity: 5, milestone: "★ LAUNCH" },
+      may: { activity: "Ramp", intensity: 3 },
       jun: { activity: "Ramp", intensity: 3 },
       jul: { activity: "Ramp", intensity: 3 },
       aug: { activity: "Ongoing", intensity: 3 },
@@ -693,7 +683,7 @@ const SWIMLANES = [
       nov: { activity: "Ongoing", intensity: 3 },
       dec: { activity: "Ongoing", intensity: 3 }
     },
-    milestones: "Q2/May: Insurance program launch",
+    milestones: "Apr: Insurance program launch",
     dependencies: "Service infrastructure\nPricing finalized",
     risk: "Missed recurring revenue\nFewer customer touchpoints"
   },
@@ -709,9 +699,9 @@ const SWIMLANES = [
       jan: { activity: "Build", intensity: 2 },
       feb: { activity: "Build", intensity: 2 },
       mar: { activity: "Build", intensity: 2 },
-      apr: { activity: "Build", intensity: 2 },
-      may: { activity: "Build", intensity: 2 },
-      jun: { activity: "Launch", intensity: 4, milestone: "★ Launch" },
+      apr: { activity: "Launch", intensity: 4, milestone: "★ Launch" },
+      may: { activity: "Optimize", intensity: 3 },
+      jun: { activity: "Optimize", intensity: 3 },
       jul: { activity: "Optimize", intensity: 3 },
       aug: { activity: "Optimize", intensity: 3 },
       sep: { activity: "Optimize", intensity: 3 },
@@ -719,13 +709,13 @@ const SWIMLANES = [
       nov: { activity: "Optimize", intensity: 3 },
       dec: { activity: "Optimize", intensity: 3 }
     },
-    milestones: "Q2: Referral program live",
+    milestones: "Apr: Referral program live",
     dependencies: "Program structure\nTracking setup",
     risk: "Higher CAC\nMissed organic acquisition"
   },
   {
     id: "wigfix-replenishment",
-    name: "WigFix Replenishment",
+    name: "Email — WigFix Replenishment",
     tier: "retention",
     customerThinking: "\"I need more WigFix\"\n\"Running low\"",
     platforms: "Klaviyo: 90-120 day replenishment flow\n2-3x per customer",

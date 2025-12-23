@@ -6,799 +6,538 @@
   <title>The Renatural — 2026 Marketing Master Timeline</title>
   <style>
     :root {
-      --bg-primary: #0a0a0a;
-      --bg-secondary: #111;
-      --bg-tertiary: #1a1a1a;
-      --text-primary: #ffffff;
-      --text-secondary: #aaaaaa;
-      --text-muted: #666666;
-      --border-color: rgba(255,255,255,0.1);
-      --accent-gold: #e8d5b7;
-      --accent-orange: rgba(255, 200, 100, 0.7);
-      
-      --acquisition-bg: rgba(45, 90, 74, 0.4);
-      --acquisition-border: rgba(45, 90, 74, 0.8);
-      --acquisition-text: #4a9a7a;
-      
-      --consideration-bg: rgba(74, 74, 45, 0.4);
-      --consideration-border: rgba(74, 74, 45, 0.8);
-      --consideration-text: #9a9a4a;
-      
-      --conversion-bg: rgba(90, 45, 74, 0.4);
-      --conversion-border: rgba(90, 45, 74, 0.8);
-      --conversion-text: #9a4a7a;
-      
-      --retention-bg: rgba(45, 74, 90, 0.4);
-      --retention-border: rgba(45, 74, 90, 0.8);
-      --retention-text: #4a7a9a;
-      
-      --header-height: 52px;
-      --metrics-height: 44px;
-      --total-fixed-height: 96px;
+      --bg: #0a0a0a;
+      --bg2: #111;
+      --bg3: #1a1a1a;
+      --text: #fff;
+      --text2: #aaa;
+      --text3: #666;
+      --border: rgba(255,255,255,0.1);
+      --gold: #e8d5b7;
+      --orange: rgba(255,200,100,0.8);
+      --acq: #1a2e26;
+      --con: #2e2e1a;
+      --cvr: #2e1a26;
+      --ret: #1a262e;
+      --acq-text: #4a9a7a;
+      --con-text: #9a9a4a;
+      --cvr-text: #9a4a7a;
+      --ret-text: #4a7a9a;
+      --left-width: 610px;
+      --row-height: auto;
     }
     
-    .light-mode {
-      --bg-primary: #f5f5f5;
-      --bg-secondary: #ffffff;
-      --bg-tertiary: #e8e8e8;
-      --text-primary: #1a1a1a;
-      --text-secondary: #555555;
-      --text-muted: #888888;
-      --border-color: rgba(0,0,0,0.1);
-      
-      --acquisition-bg: rgba(45, 90, 74, 0.15);
-      --consideration-bg: rgba(74, 74, 45, 0.15);
-      --conversion-bg: rgba(90, 45, 74, 0.15);
-      --retention-bg: rgba(45, 74, 90, 0.15);
+    .light {
+      --bg: #f5f5f5;
+      --bg2: #fff;
+      --bg3: #e8e8e8;
+      --text: #1a1a1a;
+      --text2: #555;
+      --text3: #888;
+      --border: rgba(0,0,0,0.1);
+      --acq: #d4e8df;
+      --con: #e8e8d4;
+      --cvr: #e8d4df;
+      --ret: #d4dfe8;
     }
     
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 11px;
       line-height: 1.4;
-      transition: background 0.3s, color 0.3s;
+      overflow: hidden;
+      height: 100vh;
     }
     
-    /* ===== TOP NAVIGATION ===== */
-    .top-nav {
+    /* NAV */
+    .nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
-      padding: 12px 24px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      height: var(--header-height);
+      height: 48px;
     }
-    
-    .nav-title {
-      font-size: 14px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    
-    .nav-center {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-    
+    .nav-title { font-weight: 600; font-size: 13px; }
+    .nav-btns { display: flex; gap: 5px; flex-wrap: wrap; }
     .nav-btn {
-      padding: 5px 10px;
-      font-size: 11px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .nav-btn:hover {
-      background: var(--border-color);
-      color: var(--text-primary);
-    }
-    
-    .nav-btn.active {
-      background: var(--accent-gold);
-      color: #1a1a1a;
-      border-color: var(--accent-gold);
-    }
-    
-    .nav-divider {
-      width: 1px;
-      height: 20px;
-      background: var(--border-color);
-      margin: 0 6px;
-    }
-    
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .search-input {
-      padding: 5px 10px;
-      font-size: 11px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-color);
-      color: var(--text-primary);
-      border-radius: 4px;
-      width: 140px;
-    }
-    
-    .search-input::placeholder {
-      color: var(--text-muted);
-    }
-    
-    .toggle-btn {
-      padding: 5px 10px;
-      font-size: 11px;
-      background: transparent;
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      border-radius: 3px;
       cursor: pointer;
     }
+    .nav-btn:hover { background: var(--border); color: var(--text); }
+    .nav-right { display: flex; gap: 8px; align-items: center; }
+    .search {
+      padding: 4px 8px;
+      font-size: 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 3px;
+      width: 120px;
+    }
     
-    /* ===== METRICS BAR ===== */
-    .metrics-bar {
+    /* METRICS */
+    .metrics {
       position: fixed;
-      top: var(--header-height);
+      top: 48px; left: 0; right: 0;
+      z-index: 999;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 20px;
+      display: flex;
+      gap: 20px;
+      font-size: 11px;
+      height: 36px;
+    }
+    .metrics span { color: var(--text3); margin-right: 4px; }
+    
+    /* MAIN LAYOUT - Two panels */
+    .main {
+      position: fixed;
+      top: 84px;
       left: 0;
       right: 0;
-      z-index: 999;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
-      padding: 10px 24px;
+      bottom: 0;
       display: flex;
-      gap: 24px;
-      font-size: 11px;
-      height: var(--metrics-height);
-      align-items: center;
     }
     
-    .metric span {
-      color: var(--text-muted);
-      margin-right: 4px;
+    /* LEFT PANEL - Fixed */
+    .left-panel {
+      width: var(--left-width);
+      flex-shrink: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border-right: 3px solid var(--gold);
+      background: var(--bg);
     }
     
-    /* ===== TABLE CONTAINER ===== */
-    .table-wrapper {
-      margin-top: var(--total-fixed-height);
-      overflow-x: auto;
-      overflow-y: visible;
+    /* RIGHT PANEL - Scrollable */
+    .right-panel {
+      flex: 1;
+      overflow: auto;
     }
     
-    .timeline-table {
-      border-collapse: collapse;
-      width: max-content;
-      min-width: 100%;
+    /* ROW STRUCTURE */
+    .row-left {
+      display: grid;
+      grid-template-columns: 140px 150px 180px 140px;
+      border-bottom: 1px solid var(--border);
     }
     
-    .timeline-table th,
-    .timeline-table td {
-      border: 1px solid var(--border-color);
+    .row-right {
+      display: grid;
+      grid-template-columns: repeat(12, 85px) 180px 170px 170px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .cell {
       padding: 10px 8px;
-      font-size: 10px;
-      vertical-align: top;
-      text-align: left;
+      border-right: 1px solid var(--border);
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     
-    /* ===== STICKY COLUMNS ===== */
-    .col-swimlane { 
-      position: sticky; 
-      left: 0; 
-      z-index: 20; 
-      min-width: 150px; 
-      max-width: 150px;
-      background: var(--bg-primary);
-    }
+    .cell:last-child { border-right: none; }
     
-    .col-thinking { 
-      position: sticky; 
-      left: 150px; 
-      z-index: 20; 
-      min-width: 160px; 
-      max-width: 160px;
-      background: var(--bg-primary);
-    }
-    
-    .col-platforms { 
-      position: sticky; 
-      left: 310px; 
-      z-index: 20; 
-      min-width: 180px; 
-      max-width: 180px;
-      background: var(--bg-primary);
-    }
-    
-    .col-budget { 
-      position: sticky; 
-      left: 490px; 
-      z-index: 20; 
-      min-width: 120px; 
-      max-width: 120px;
-      background: var(--bg-primary);
-      border-right: 3px solid var(--accent-gold) !important;
-    }
-    
-    /* ===== HEADER ROW ===== */
-    .timeline-table thead th {
-      position: sticky;
-      top: var(--total-fixed-height);
-      z-index: 30;
-      background: var(--bg-tertiary);
+    /* HEADER */
+    .header-row .cell {
+      background: var(--bg3);
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--text-secondary);
+      color: var(--text2);
       text-align: center;
+      min-height: 50px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
     
-    .timeline-table thead th.col-swimlane,
-    .timeline-table thead th.col-thinking,
-    .timeline-table thead th.col-platforms,
-    .timeline-table thead th.col-budget {
-      z-index: 40;
+    .header-row .cell.left-cell {
       text-align: left;
     }
     
-    /* ===== QUARTER HEADER ===== */
-    .quarter-row th {
-      padding: 6px 8px;
-      font-size: 10px;
+    /* QUARTER COLORS */
+    .q1 { background: rgba(74,154,122,0.3) !important; color: #4a9a7a !important; }
+    .q2 { background: rgba(154,122,74,0.3) !important; color: #9a7a4a !important; }
+    .q3 { background: rgba(122,74,154,0.3) !important; color: #7a4a9a !important; }
+    .q4 { background: rgba(154,74,74,0.3) !important; color: #9a4a4a !important; }
+    
+    /* GATE */
+    .gate { border-right: 3px solid var(--orange) !important; }
+    
+    /* TIER DIVIDER */
+    .tier-left, .tier-right {
+      padding: 12px 16px;
       font-weight: 600;
-      letter-spacing: 0.1em;
-      text-align: center;
-    }
-    
-    .quarter-row th.q1 { background: rgba(74, 154, 122, 0.25); color: #4a9a7a; }
-    .quarter-row th.q2 { background: rgba(154, 122, 74, 0.25); color: #9a7a4a; }
-    .quarter-row th.q3 { background: rgba(122, 74, 154, 0.25); color: #7a4a9a; }
-    .quarter-row th.q4 { background: rgba(154, 74, 74, 0.25); color: #9a4a4a; }
-    
-    /* ===== MONTH COLUMNS ===== */
-    .col-month {
-      min-width: 85px;
-      max-width: 85px;
-      text-align: center;
-      vertical-align: middle;
-    }
-    
-    /* ===== END COLUMNS ===== */
-    .col-milestones {
-      min-width: 180px;
-      max-width: 180px;
-      background: rgba(232, 213, 183, 0.08);
-      color: var(--accent-gold);
-    }
-    
-    .col-dependencies {
-      min-width: 180px;
-      max-width: 180px;
-      background: rgba(100, 150, 255, 0.08);
-      color: #8ab4ff;
-    }
-    
-    .col-risk {
-      min-width: 180px;
-      max-width: 180px;
-      background: rgba(255, 100, 100, 0.08);
-      color: #ff9999;
-    }
-    
-    .col-risk.low-risk {
-      background: rgba(255,255,255,0.02);
-      color: var(--text-muted);
-    }
-    
-    .col-risk.critical-risk {
-      background: rgba(255, 50, 50, 0.15);
-      color: #ff6666;
-      font-weight: 600;
-    }
-    
-    /* ===== TIER DIVIDER ROW ===== */
-    .tier-divider-row td {
-      padding: 10px 16px;
       font-size: 12px;
-      font-weight: 600;
       letter-spacing: 0.1em;
       cursor: pointer;
-      transition: opacity 0.2s;
-    }
-    
-    .tier-divider-row:hover td {
-      opacity: 0.85;
-    }
-    
-    .tier-divider-row.tier-acquisition td { background: var(--acquisition-bg); color: var(--acquisition-text); }
-    .tier-divider-row.tier-consideration td { background: var(--consideration-bg); color: var(--consideration-text); }
-    .tier-divider-row.tier-conversion td { background: var(--conversion-bg); color: var(--conversion-text); }
-    .tier-divider-row.tier-retention td { background: var(--retention-bg); color: var(--retention-text); }
-    
-    .collapse-icon {
-      display: inline-block;
-      margin-right: 8px;
-      transition: transform 0.3s;
-    }
-    
-    .tier-divider-row.collapsed .collapse-icon {
-      transform: rotate(-90deg);
-    }
-    
-    /* ===== SWIMLANE ROWS ===== */
-    .swimlane-row.tier-acquisition .col-swimlane,
-    .swimlane-row.tier-acquisition .col-thinking,
-    .swimlane-row.tier-acquisition .col-platforms,
-    .swimlane-row.tier-acquisition .col-budget { background: var(--acquisition-bg); }
-    
-    .swimlane-row.tier-consideration .col-swimlane,
-    .swimlane-row.tier-consideration .col-thinking,
-    .swimlane-row.tier-consideration .col-platforms,
-    .swimlane-row.tier-consideration .col-budget { background: var(--consideration-bg); }
-    
-    .swimlane-row.tier-conversion .col-swimlane,
-    .swimlane-row.tier-conversion .col-thinking,
-    .swimlane-row.tier-conversion .col-platforms,
-    .swimlane-row.tier-conversion .col-budget { background: var(--conversion-bg); }
-    
-    .swimlane-row.tier-retention .col-swimlane,
-    .swimlane-row.tier-retention .col-thinking,
-    .swimlane-row.tier-retention .col-platforms,
-    .swimlane-row.tier-retention .col-budget { background: var(--retention-bg); }
-    
-    .swimlane-row.hidden {
-      display: none;
-    }
-    
-    .swimlane-row.filtered-out {
-      display: none;
-    }
-    
-    .swimlane-name {
-      font-weight: 600;
-      font-size: 11px;
-    }
-    
-    .stage-tag {
-      font-size: 8px;
-      letter-spacing: 0.1em;
-      opacity: 0.7;
-      display: block;
-      margin-bottom: 3px;
-      text-transform: uppercase;
-    }
-    
-    .customer-thinking {
-      color: var(--text-secondary);
-      font-style: italic;
-      white-space: pre-line;
-    }
-    
-    .platforms {
-      white-space: pre-line;
-    }
-    
-    /* ===== MONTH CELLS ===== */
-    .month-cell {
-      text-align: center;
-      vertical-align: middle;
-      min-height: 60px;
-      position: relative;
-    }
-    
-    .month-cell.empty {
-      background: rgba(255,255,255,0.01);
-      color: var(--text-muted);
-    }
-    
-    .month-cell.milestone {
-      background: rgba(232, 213, 183, 0.12);
-    }
-    
-    .month-cell.current-month {
-      box-shadow: inset 0 0 0 2px var(--accent-orange);
-    }
-    
-    .month-cell .milestone-marker {
-      color: var(--accent-gold);
-      font-weight: 600;
-      font-size: 10px;
-      display: block;
-      margin-bottom: 2px;
-    }
-    
-    .month-cell .activity {
-      font-size: 9px;
-      color: var(--text-secondary);
-      display: block;
-    }
-    
-    .intensity-bar {
-      height: 4px;
-      border-radius: 2px;
-      margin: 6px auto 0;
-      background: rgba(255,255,255,0.1);
-    }
-    
-    .intensity-0 { width: 0; }
-    .intensity-1 { width: 20%; background: rgba(255,255,255,0.15); }
-    .intensity-2 { width: 40%; background: rgba(255,255,255,0.25); }
-    .intensity-3 { width: 60%; background: rgba(255,255,255,0.35); }
-    .intensity-4 { width: 80%; background: rgba(255,255,255,0.45); }
-    .intensity-5 { width: 100%; background: rgba(255,255,255,0.55); }
-    
-    /* ===== GATE COLUMNS ===== */
-    .gate-after {
-      border-right: 3px solid var(--accent-orange) !important;
-    }
-    
-    /* ===== STICKY NOTES ===== */
-    .sticky-section {
-      padding: 24px;
+      min-height: 44px;
       display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
     }
     
-    .sticky-note {
+    .tier-left.acq, .tier-right.acq { background: #1a3d30; color: var(--acq-text); }
+    .tier-left.con, .tier-right.con { background: #3d3d1a; color: var(--con-text); }
+    .tier-left.cvr, .tier-right.cvr { background: #3d1a30; color: var(--cvr-text); }
+    .tier-left.ret, .tier-right.ret { background: #1a303d; color: var(--ret-text); }
+    
+    .light .tier-left.acq, .light .tier-right.acq { background: #b8d8c8; }
+    .light .tier-left.con, .light .tier-right.con { background: #d8d8b8; }
+    .light .tier-left.cvr, .light .tier-right.cvr { background: #d8b8c8; }
+    .light .tier-left.ret, .light .tier-right.ret { background: #b8c8d8; }
+    
+    .arrow { margin-right: 8px; display: inline-block; transition: transform 0.2s; }
+    .tier-left.collapsed .arrow { transform: rotate(-90deg); }
+    
+    /* DATA ROW COLORS */
+    .data-row.acq .cell { background: var(--acq); }
+    .data-row.con .cell { background: var(--con); }
+    .data-row.cvr .cell { background: var(--cvr); }
+    .data-row.ret .cell { background: var(--ret); }
+    
+    /* Content Production distinct color - still acquisition but visually separate */
+    .data-row.acq.content-prod .cell { background: #1e3333; }
+    .light .data-row.acq.content-prod .cell { background: #cce0e0; }
+    
+    /* Right side cells need default bg */
+    .right-panel .data-row .cell { background: var(--bg); }
+    
+    .data-row.hidden { display: none; }
+    .data-row.filtered { display: none; }
+    
+    /* CONTENT STYLES */
+    .name { font-weight: 600; font-size: 11px; }
+    .tag { font-size: 8px; letter-spacing: 0.1em; opacity: 0.6; display: block; margin-bottom: 2px; text-transform: uppercase; }
+    .think { color: var(--text2); font-style: italic; white-space: pre-line; }
+    .plat { white-space: pre-line; font-size: 10px; }
+    
+    /* MONTH CELLS */
+    .mon { text-align: center; justify-content: center; align-items: center; }
+    .mon.empty { background: rgba(255,255,255,0.02) !important; color: var(--text3); }
+    .mon.mile { background: rgba(232,213,183,0.15) !important; }
+    .ms { color: var(--gold); font-weight: 600; font-size: 10px; }
+    .act { font-size: 9px; color: var(--text2); }
+    .bar { height: 4px; border-radius: 2px; margin-top: 6px; background: rgba(255,255,255,0.08); }
+    .i1 { width: 20%; background: rgba(255,255,255,0.15); }
+    .i2 { width: 40%; background: rgba(255,255,255,0.25); }
+    .i3 { width: 60%; background: rgba(255,255,255,0.35); }
+    .i4 { width: 80%; background: rgba(255,255,255,0.45); }
+    .i5 { width: 100%; background: rgba(255,255,255,0.55); }
+    
+    /* END COLUMNS */
+    .miles { background: rgba(232,213,183,0.1) !important; color: var(--gold); }
+    .deps { background: rgba(100,150,255,0.1) !important; color: #8ab4ff; }
+    .risk { background: rgba(255,100,100,0.1) !important; color: #ff9999; }
+    .risk.low { background: rgba(255,255,255,0.02) !important; color: var(--text3); }
+    .risk.crit { background: rgba(255,50,50,0.2) !important; color: #ff6666; font-weight: 600; }
+    
+    /* FOOTER */
+    .footer-left, .footer-right {
+      padding: 20px;
+      font-size: 10px;
+      color: var(--text3);
+      border-top: 1px solid var(--border);
+    }
+    
+    /* NOTES at bottom of left panel */
+    .notes {
+      padding: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .note {
       background: #3d3d1a;
       border: 1px solid #5a5a2d;
-      padding: 12px 16px;
-      font-size: 11px;
+      padding: 10px 12px;
+      font-size: 10px;
       border-radius: 3px;
-      transform: rotate(-1deg);
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-      max-width: 280px;
+      margin-bottom: 10px;
     }
+    .note.rsk { background: #3d1a1a; border-color: #5a2d2d; color: #ffaaaa; }
+    .light .note { background: #fffde7; border-color: #f0e68c; color: #333; }
+    .light .note.rsk { background: #ffebee; border-color: #ef9a9a; color: #c62828; }
     
-    .sticky-note.risk {
-      background: #3d1a1a;
-      border-color: #5a2d2d;
-      color: #ffaaaa;
-    }
-    
-    .light-mode .sticky-note {
-      background: #fffde7;
-      border-color: #f0e68c;
-      color: #333;
-    }
-    
-    .light-mode .sticky-note.risk {
-      background: #ffebee;
-      border-color: #ef9a9a;
-      color: #c62828;
-    }
-    
-    /* ===== FOOTER ===== */
-    .footer {
-      padding: 24px;
-      border-top: 1px solid var(--border-color);
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-    
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1400px) {
-      .nav-center {
-        gap: 4px;
-      }
-      .nav-btn {
-        padding: 4px 8px;
-        font-size: 10px;
-      }
-    }
-    
-    @media (max-width: 1100px) {
-      .nav-center {
-        display: none;
-      }
-    }
+    @media (max-width: 1100px) { .nav-btns { display: none; } }
   </style>
 </head>
 <body>
-  
-  <!-- Top Navigation -->
-  <nav class="top-nav">
-    <div class="nav-title">The Renatural — 2026 Timeline</div>
-    
-    <div class="nav-center">
-      <button class="nav-btn" onclick="scrollToQuarter('jan')">Q1</button>
-      <button class="nav-btn" onclick="scrollToQuarter('apr')">Q2</button>
-      <button class="nav-btn" onclick="scrollToQuarter('jul')">Q3</button>
-      <button class="nav-btn" onclick="scrollToQuarter('oct')">Q4</button>
-      
-      <div class="nav-divider"></div>
-      
-      <button class="nav-btn" onclick="scrollToTier('acquisition')">Acquisition</button>
-      <button class="nav-btn" onclick="scrollToTier('consideration')">Consideration</button>
-      <button class="nav-btn" onclick="scrollToTier('conversion')">Conversion</button>
-      <button class="nav-btn" onclick="scrollToTier('retention')">Retention</button>
-      
-      <div class="nav-divider"></div>
-      
-      <button class="nav-btn" onclick="toggleAllTiers()">Expand/Collapse All</button>
-      <button class="nav-btn" onclick="toggleMilestones()">Milestones Only</button>
-    </div>
-    
-    <div class="nav-right">
-      <input type="text" class="search-input" placeholder="Filter swimlanes..." oninput="filterSwimlanes(this.value)">
-      <button class="toggle-btn" onclick="toggleTheme()">☀️ / 🌙</button>
-    </div>
-  </nav>
-  
-  <!-- Metrics Bar -->
-  <div class="metrics-bar" id="metricsBar"></div>
-  
-  <!-- Table Container -->
-  <div class="table-wrapper">
-    <table class="timeline-table" id="timelineTable">
-      <thead id="tableHead"></thead>
-      <tbody id="tableBody"></tbody>
-    </table>
+
+<nav class="nav">
+  <div class="nav-title">The Renatural — 2026 Timeline</div>
+  <div class="nav-btns">
+    <button class="nav-btn" onclick="scrollQ(0)">Q1</button>
+    <button class="nav-btn" onclick="scrollQ(3)">Q2</button>
+    <button class="nav-btn" onclick="scrollQ(6)">Q3</button>
+    <button class="nav-btn" onclick="scrollQ(9)">Q4</button>
+    <button class="nav-btn" onclick="scrollT('acq')">Acquisition</button>
+    <button class="nav-btn" onclick="scrollT('con')">Consideration</button>
+    <button class="nav-btn" onclick="scrollT('cvr')">Conversion</button>
+    <button class="nav-btn" onclick="scrollT('ret')">Retention</button>
+    <button class="nav-btn" onclick="toggleAll()">Expand/Collapse</button>
+    <button class="nav-btn" onclick="toggleMiles()">Milestones</button>
   </div>
+  <div class="nav-right">
+    <input class="search" placeholder="Filter..." oninput="filter(this.value)">
+    <button class="nav-btn" onclick="toggleTheme()">☀/🌙</button>
+  </div>
+</nav>
+
+<div class="metrics" id="metrics"></div>
+
+<div class="main">
+  <div class="left-panel" id="leftPanel"></div>
+  <div class="right-panel" id="rightPanel"></div>
+</div>
+
+<script src="data.js"></script>
+<script>
+const M = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+const ML = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+const GATES = [2, 5, 8]; // indices: mar, jun, sep
+const QTR = ['q1','q1','q1','q2','q2','q2','q3','q3','q3','q4','q4','q4'];
+
+const tierMap = {
+  acquisition: {id:'acq', name:'TIER 1: ACQUISITION', budget:'$473K Total Budget'},
+  consideration: {id:'con', name:'TIER 2: CONSIDERATION', budget:'Nurture & Engagement'},
+  conversion: {id:'cvr', name:'TIER 3: CONVERSION', budget:'Purchase'},
+  retention: {id:'ret', name:'TIER 4: RETENTION', budget:'Lifetime Value'}
+};
+
+let collapsed = {};
+let milesMode = false;
+let rowIndex = 0;
+
+document.addEventListener('DOMContentLoaded', init);
+
+function init() {
+  renderMetrics();
+  renderPanels();
+  syncScroll();
   
-  <!-- Sticky Notes -->
-  <div class="sticky-section" id="stickyNotes"></div>
+  // Sync row heights after DOM renders
+  requestAnimationFrame(() => {
+    syncRowHeights();
+  });
   
-  <!-- Footer -->
-  <div class="footer" id="footer"></div>
+  // Re-sync on window resize
+  window.addEventListener('resize', syncRowHeights);
+}
+
+function renderMetrics() {
+  const m = CONFIG.metrics;
+  document.getElementById('metrics').innerHTML = `
+    <div><span>Revenue:</span> ${m.revenueTarget}</div>
+    <div><span>Wigs:</span> ${m.wigs}</div>
+    <div><span>Accessories:</span> ${m.accessories}</div>
+    <div><span>Budget:</span> ${m.totalBudget}</div>
+    <div><span>CAC:</span> ${m.wigCAC}</div>
+    <div><span>CVR:</span> ${m.targetCVR}</div>
+    <div><span>Sessions:</span> ${m.sessionsNeeded}</div>
+  `;
+}
+
+function renderPanels() {
+  let left = '';
+  let right = '';
+  rowIndex = 0;
   
-  <!-- Load Data -->
-  <script src="data.js"></script>
+  // Header
+  left += `<div class="row-left header-row">
+    <div class="cell left-cell">Swimlane</div>
+    <div class="cell left-cell">Customer Thinking</div>
+    <div class="cell left-cell">Platforms</div>
+    <div class="cell left-cell">Budget / Role</div>
+  </div>`;
   
-  <script>
-    const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-    const MONTH_LABELS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    const GATE_AFTER = ['mar', 'jun', 'sep']; // Gates after these months
+  right += `<div class="row-right header-row">
+    ${ML.map((m,i) => `<div class="cell ${QTR[i]}${GATES.includes(i)?' gate':''}">${m}</div>`).join('')}
+    <div class="cell">Key Milestones</div>
+    <div class="cell">Dependencies</div>
+    <div class="cell">Risk if Late</div>
+  </div>`;
+  
+  // Tiers and data
+  TIERS.forEach(tier => {
+    const t = tierMap[tier.id];
     
-    let collapsedTiers = {};
-    let milestonesOnly = false;
+    // Tier divider
+    const tierLabel = t.budget ? `${t.name} — ${t.budget}` : t.name;
+    left += `<div class="tier-left ${t.id}" id="tier-${t.id}" onclick="toggle('${t.id}')"><span class="arrow">▼</span>${tierLabel}</div>`;
+    right += `<div class="tier-right ${t.id}"></div>`;
     
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      renderMetrics();
-      renderTable();
-      renderStickyNotes();
-      renderFooter();
-      highlightCurrentMonth();
+    // Data rows
+    SWIMLANES.filter(s => s.tier === tier.id).forEach(sw => {
+      const rid = `row-${rowIndex++}`;
+      left += renderLeftRow(sw, t.id, rid);
+      right += renderRightRow(sw, t.id, rid);
     });
+  });
+  
+  // Footer - left only
+  left += `<div class="footer-left">The Renatural — 2026 Marketing Timeline</div>`;
+  
+  document.getElementById('leftPanel').innerHTML = left;
+  document.getElementById('rightPanel').innerHTML = right;
+}
+
+function renderLeftRow(sw, tid, rid) {
+  const extraClass = sw.id === 'content-production' ? ' content-prod' : '';
+  return `<div class="row-left data-row ${tid}${extraClass}" data-t="${tid}" data-r="${rid}" data-n="${sw.name.toLowerCase()}" data-search="${sw.name.toLowerCase()} ${sw.customerThinking.toLowerCase()} ${sw.platforms.toLowerCase()} ${sw.budget.toLowerCase()} ${sw.role.toLowerCase()}">
+    <div class="cell"><span class="tag">${tid}</span><span class="name">${sw.name}</span></div>
+    <div class="cell think">${sw.customerThinking}</div>
+    <div class="cell plat">${sw.platforms}</div>
+    <div class="cell"><strong>${sw.budget}</strong><br>${sw.role}</div>
+  </div>`;
+}
+
+function renderRightRow(sw, tid, rid) {
+  const rc = sw.riskLevel === 'low' ? 'low' : sw.riskLevel === 'critical' ? 'crit' : '';
+  const extraClass = sw.id === 'content-production' ? ' content-prod' : '';
+  
+  // Build search string from all month activities and milestones
+  const monthText = Object.values(sw.months).map(m => `${m.activity || ''} ${m.milestone || ''}`).join(' ').toLowerCase();
+  const searchText = `${sw.milestones.toLowerCase()} ${sw.dependencies.toLowerCase()} ${sw.risk.toLowerCase()} ${monthText}`;
+  
+  let months = M.map((m,i) => {
+    const d = sw.months[m] || {activity:'—',intensity:0};
+    const isEmpty = d.intensity === 0;
+    const hasMile = d.milestone;
+    const isGate = GATES.includes(i);
+    let cls = 'cell mon';
+    if (isEmpty) cls += ' empty';
+    if (hasMile) cls += ' mile';
+    if (isGate) cls += ' gate';
     
-    function renderMetrics() {
-      const container = document.getElementById('metricsBar');
-      const m = CONFIG.metrics;
-      container.innerHTML = `
-        <div class="metric"><span>Revenue Target:</span> ${m.revenueTarget}</div>
-        <div class="metric"><span>Wigs:</span> ${m.wigs}</div>
-        <div class="metric"><span>Accessories:</span> ${m.accessories}</div>
-        <div class="metric"><span>Total Budget:</span> ${m.totalBudget}</div>
-        <div class="metric"><span>Wig CAC:</span> ${m.wigCAC}</div>
-        <div class="metric"><span>Target CVR:</span> ${m.targetCVR}</div>
-        <div class="metric"><span>Sessions Needed:</span> ${m.sessionsNeeded}</div>
-      `;
-    }
+    return `<div class="${cls}">
+      ${hasMile ? `<span class="ms">${d.milestone}</span>` : ''}
+      <span class="act">${d.activity}</span>
+      ${d.intensity > 0 ? `<div class="bar i${d.intensity}"></div>` : ''}
+    </div>`;
+  }).join('');
+  
+  return `<div class="row-right data-row ${tid}${extraClass}" data-t="${tid}" data-r="${rid}" data-n="${sw.name.toLowerCase()}" data-search="${searchText}">
+    ${months}
+    <div class="cell miles">${sw.milestones.replace(/\n/g,'<br>')}</div>
+    <div class="cell deps">${sw.dependencies.replace(/\n/g,'<br>')}</div>
+    <div class="cell risk ${rc}">${sw.risk.replace(/\n/g,'<br>')}</div>
+  </div>`;
+}
+
+function syncScroll() {
+  const left = document.getElementById('leftPanel');
+  const right = document.getElementById('rightPanel');
+  
+  left.addEventListener('scroll', () => {
+    right.scrollTop = left.scrollTop;
+  });
+  
+  right.addEventListener('scroll', () => {
+    left.scrollTop = right.scrollTop;
+  });
+}
+
+function syncRowHeights() {
+  // Get all matching row pairs
+  const leftRows = document.querySelectorAll('#leftPanel .row-left, #leftPanel .tier-left');
+  const rightRows = document.querySelectorAll('#rightPanel .row-right, #rightPanel .tier-right');
+  
+  leftRows.forEach((leftRow, i) => {
+    const rightRow = rightRows[i];
+    if (!rightRow) return;
     
-    function renderTable() {
-      const thead = document.getElementById('tableHead');
-      const tbody = document.getElementById('tableBody');
-      
-      // Build header - Quarter row
-      let quarterRow = `
-        <tr class="quarter-row">
-          <th class="col-swimlane" rowspan="2">Swimlane</th>
-          <th class="col-thinking" rowspan="2">Customer Thinking</th>
-          <th class="col-platforms" rowspan="2">Platforms & Placements</th>
-          <th class="col-budget" rowspan="2">Budget / Role</th>
-          <th colspan="3" class="q1">${CONFIG.quarters.q1.label} (${CONFIG.quarters.q1.budget})</th>
-          <th colspan="3" class="q2">${CONFIG.quarters.q2.label} (${CONFIG.quarters.q2.budget})</th>
-          <th colspan="3" class="q3">${CONFIG.quarters.q3.label} (${CONFIG.quarters.q3.budget})</th>
-          <th colspan="3" class="q4">${CONFIG.quarters.q4.label} (${CONFIG.quarters.q4.budget})</th>
-          <th class="col-milestones" rowspan="2">Key Milestones</th>
-          <th class="col-dependencies" rowspan="2">Dependencies</th>
-          <th class="col-risk" rowspan="2">Risk if Late</th>
-        </tr>
-      `;
-      
-      // Month row
-      let monthRow = '<tr>';
-      MONTHS.forEach((month, i) => {
-        const isGate = GATE_AFTER.includes(month);
-        monthRow += `<th class="col-month ${isGate ? 'gate-after' : ''}" data-month="${month}">${MONTH_LABELS[i]}</th>`;
-      });
-      monthRow += '</tr>';
-      
-      thead.innerHTML = quarterRow + monthRow;
-      
-      // Build body
-      let bodyHTML = '';
-      
-      TIERS.forEach(tier => {
-        const tierSwimlanes = SWIMLANES.filter(s => s.tier === tier.id);
-        
-        // Tier divider row
-        bodyHTML += `
-          <tr class="tier-divider-row tier-${tier.id}" id="tier-${tier.id}" onclick="toggleTier('${tier.id}')">
-            <td colspan="19">
-              <span class="collapse-icon">▼</span>
-              ${tier.name} — ${tier.budget}
-            </td>
-          </tr>
-        `;
-        
-        // Swimlane rows
-        tierSwimlanes.forEach(swimlane => {
-          bodyHTML += renderSwimlaneRow(swimlane, tier.id);
-        });
-      });
-      
-      tbody.innerHTML = bodyHTML;
-    }
+    // Reset heights first
+    leftRow.style.minHeight = 'auto';
+    rightRow.style.minHeight = 'auto';
     
-    function renderSwimlaneRow(swimlane, tierId) {
-      let monthCells = '';
-      
-      MONTHS.forEach(month => {
-        const data = swimlane.months[month] || { activity: '—', intensity: 0 };
-        const isEmpty = data.intensity === 0;
-        const hasMilestone = data.milestone;
-        const isGate = GATE_AFTER.includes(month);
-        
-        let classes = 'col-month month-cell';
-        if (isEmpty) classes += ' empty';
-        if (hasMilestone) classes += ' milestone';
-        if (isGate) classes += ' gate-after';
-        
-        monthCells += `
-          <td class="${classes}" data-month="${month}">
-            ${hasMilestone ? `<span class="milestone-marker">${data.milestone}</span>` : ''}
-            <span class="activity">${data.activity}</span>
-            <div class="intensity-bar intensity-${data.intensity}"></div>
-          </td>
-        `;
-      });
-      
-      const riskClass = swimlane.riskLevel === 'low' ? 'low-risk' : 
-                        swimlane.riskLevel === 'critical' ? 'critical-risk' : '';
-      
-      return `
-        <tr class="swimlane-row tier-${tierId}" data-tier="${tierId}" data-swimlane="${swimlane.id}" data-name="${swimlane.name.toLowerCase()}">
-          <td class="col-swimlane">
-            <span class="stage-tag">${tierId}</span>
-            <span class="swimlane-name">${swimlane.name}</span>
-          </td>
-          <td class="col-thinking customer-thinking">${swimlane.customerThinking}</td>
-          <td class="col-platforms platforms">${swimlane.platforms}</td>
-          <td class="col-budget">
-            <strong>${swimlane.budget}</strong><br>
-            ${swimlane.role}
-          </td>
-          ${monthCells}
-          <td class="col-milestones">${swimlane.milestones.replace(/\n/g, '<br>')}</td>
-          <td class="col-dependencies">${swimlane.dependencies.replace(/\n/g, '<br>')}</td>
-          <td class="col-risk ${riskClass}">${swimlane.risk.replace(/\n/g, '<br>')}</td>
-        </tr>
-      `;
-    }
+    // Get natural heights
+    const leftHeight = leftRow.offsetHeight;
+    const rightHeight = rightRow.offsetHeight;
     
-    function renderStickyNotes() {
-      const container = document.getElementById('stickyNotes');
-      container.innerHTML = CONFIG.stickyNotes.map(note => 
-        `<div class="sticky-note ${note.type === 'risk' ? 'risk' : ''}">${note.text}</div>`
-      ).join('');
-    }
-    
-    function renderFooter() {
-      document.getElementById('footer').innerHTML = `
-        The Renatural — 2026 Marketing Master Timeline — Prepared for CEO Aasiyah<br>
-        ${CONFIG.metrics.revenueTarget} Revenue Target | ${CONFIG.metrics.wigs} Wigs + ${CONFIG.metrics.accessories} Accessories | ${CONFIG.metrics.totalBudget} Budget | ${CONFIG.metrics.targetCVR} CVR on ${CONFIG.metrics.sessionsNeeded} Sessions
-      `;
-    }
-    
-    function highlightCurrentMonth() {
-      const now = new Date();
-      const currentMonth = MONTHS[now.getMonth()];
-      document.querySelectorAll(`td[data-month="${currentMonth}"]`).forEach(el => {
-        el.classList.add('current-month');
-      });
-    }
-    
-    // ===== INTERACTIONS =====
-    
-    function toggleTier(tierId) {
-      collapsedTiers[tierId] = !collapsedTiers[tierId];
-      const isCollapsed = collapsedTiers[tierId];
-      
-      // Update divider icon
-      const divider = document.getElementById(`tier-${tierId}`);
-      divider.classList.toggle('collapsed', isCollapsed);
-      
-      // Show/hide rows
-      document.querySelectorAll(`.swimlane-row[data-tier="${tierId}"]`).forEach(el => {
-        el.classList.toggle('hidden', isCollapsed);
-      });
-    }
-    
-    function toggleAllTiers() {
-      const anyExpanded = TIERS.some(tier => !collapsedTiers[tier.id]);
-      
-      TIERS.forEach(tier => {
-        collapsedTiers[tier.id] = anyExpanded;
-        
-        const divider = document.getElementById(`tier-${tier.id}`);
-        if (divider) divider.classList.toggle('collapsed', anyExpanded);
-        
-        document.querySelectorAll(`.swimlane-row[data-tier="${tier.id}"]`).forEach(el => {
-          el.classList.toggle('hidden', anyExpanded);
-        });
-      });
-    }
-    
-    function toggleMilestones() {
-      milestonesOnly = !milestonesOnly;
-      document.querySelectorAll('.month-cell').forEach(el => {
-        if (milestonesOnly) {
-          el.style.opacity = el.classList.contains('milestone') ? '1' : '0.15';
-        } else {
-          el.style.opacity = '1';
-        }
-      });
-    }
-    
-    function filterSwimlanes(query) {
-      const q = query.toLowerCase().trim();
-      document.querySelectorAll('.swimlane-row').forEach(row => {
-        const name = row.dataset.name || '';
-        row.classList.toggle('filtered-out', q && !name.includes(q));
-      });
-    }
-    
-    function scrollToQuarter(month) {
-      const firstCell = document.querySelector(`thead th[data-month="${month}"]`);
-      if (firstCell) {
-        const wrapper = document.querySelector('.table-wrapper');
-        // Calculate position accounting for sticky columns
-        const stickyWidth = 610; // Width of 4 sticky columns
-        wrapper.scrollLeft = firstCell.offsetLeft - stickyWidth - 10;
-      }
-    }
-    
-    function scrollToTier(tierId) {
-      const el = document.getElementById(`tier-${tierId}`);
-      if (el) {
-        // Expand tier if collapsed
-        if (collapsedTiers[tierId]) {
-          toggleTier(tierId);
-        }
-        
-        // Scroll with offset for fixed header
-        const offset = 150; // header + metrics + some buffer
-        const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementPosition - offset,
-          behavior: 'smooth'
-        });
-      }
-    }
-    
-    function toggleTheme() {
-      document.body.classList.toggle('light-mode');
-    }
-  </script>
+    // Set both to the max
+    const maxHeight = Math.max(leftHeight, rightHeight);
+    leftRow.style.minHeight = maxHeight + 'px';
+    rightRow.style.minHeight = maxHeight + 'px';
+  });
+}
+
+function toggle(id) {
+  collapsed[id] = !collapsed[id];
+  document.getElementById('tier-'+id).classList.toggle('collapsed', collapsed[id]);
+  
+  document.querySelectorAll(`.data-row[data-t="${id}"]`).forEach(el => {
+    el.classList.toggle('hidden', collapsed[id]);
+  });
+  
+  // Re-sync heights after visibility change
+  requestAnimationFrame(syncRowHeights);
+}
+
+function toggleAll() {
+  const expand = Object.values(collapsed).some(v => v);
+  ['acq','con','cvr','ret'].forEach(id => {
+    collapsed[id] = !expand;
+    const el = document.getElementById('tier-'+id);
+    if (el) el.classList.toggle('collapsed', !expand);
+    document.querySelectorAll(`.data-row[data-t="${id}"]`).forEach(r => {
+      r.classList.toggle('hidden', !expand);
+    });
+  });
+  
+  requestAnimationFrame(syncRowHeights);
+}
+
+function toggleMiles() {
+  milesMode = !milesMode;
+  document.querySelectorAll('.mon').forEach(c => {
+    c.style.opacity = milesMode ? (c.classList.contains('mile') ? '1' : '0.15') : '1';
+  });
+}
+
+function filter(q) {
+  q = q.toLowerCase().trim();
+  document.querySelectorAll('.data-row').forEach(r => {
+    const nameMatch = r.dataset.n && r.dataset.n.includes(q);
+    const searchMatch = r.dataset.search && r.dataset.search.includes(q);
+    const match = !q || nameMatch || searchMatch;
+    r.classList.toggle('filtered', !match);
+  });
+  
+  requestAnimationFrame(syncRowHeights);
+}
+
+function scrollQ(monthIndex) {
+  const right = document.getElementById('rightPanel');
+  right.scrollLeft = monthIndex * 85;
+}
+
+function scrollT(id) {
+  if (collapsed[id]) toggle(id);
+  const el = document.getElementById('tier-'+id);
+  if (el) {
+    document.getElementById('leftPanel').scrollTop = el.offsetTop - 60;
+  }
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('light');
+}
+</script>
 </body>
 </html>
