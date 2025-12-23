@@ -16,23 +16,25 @@
       --accent-gold: #e8d5b7;
       --accent-orange: rgba(255, 200, 100, 0.7);
       
-      --acquisition: rgba(45, 90, 74, 0.5);
+      --acquisition-bg: rgba(45, 90, 74, 0.4);
       --acquisition-border: rgba(45, 90, 74, 0.8);
       --acquisition-text: #4a9a7a;
       
-      --consideration: rgba(74, 74, 45, 0.5);
+      --consideration-bg: rgba(74, 74, 45, 0.4);
       --consideration-border: rgba(74, 74, 45, 0.8);
       --consideration-text: #9a9a4a;
       
-      --conversion: rgba(90, 45, 74, 0.5);
+      --conversion-bg: rgba(90, 45, 74, 0.4);
       --conversion-border: rgba(90, 45, 74, 0.8);
       --conversion-text: #9a4a7a;
       
-      --retention: rgba(45, 74, 90, 0.5);
+      --retention-bg: rgba(45, 74, 90, 0.4);
       --retention-border: rgba(45, 74, 90, 0.8);
       --retention-text: #4a7a9a;
       
-      --sticky-width: 780px;
+      --header-height: 52px;
+      --metrics-height: 44px;
+      --total-fixed-height: 96px;
     }
     
     .light-mode {
@@ -44,10 +46,10 @@
       --text-muted: #888888;
       --border-color: rgba(0,0,0,0.1);
       
-      --acquisition: rgba(45, 90, 74, 0.2);
-      --consideration: rgba(74, 74, 45, 0.2);
-      --conversion: rgba(90, 45, 74, 0.2);
-      --retention: rgba(45, 74, 90, 0.2);
+      --acquisition-bg: rgba(45, 90, 74, 0.15);
+      --consideration-bg: rgba(74, 74, 45, 0.15);
+      --conversion-bg: rgba(90, 45, 74, 0.15);
+      --retention-bg: rgba(45, 74, 90, 0.15);
     }
     
     * {
@@ -60,7 +62,7 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
-      line-height: 1.5;
+      line-height: 1.4;
       transition: background 0.3s, color 0.3s;
     }
     
@@ -77,7 +79,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 16px;
+      height: var(--header-height);
     }
     
     .nav-title {
@@ -89,12 +92,12 @@
     .nav-center {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
     }
     
     .nav-btn {
-      padding: 6px 12px;
+      padding: 5px 10px;
       font-size: 11px;
       background: var(--bg-tertiary);
       border: 1px solid var(--border-color);
@@ -119,23 +122,23 @@
       width: 1px;
       height: 20px;
       background: var(--border-color);
-      margin: 0 8px;
+      margin: 0 6px;
     }
     
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
     
     .search-input {
-      padding: 6px 12px;
+      padding: 5px 10px;
       font-size: 11px;
       background: var(--bg-tertiary);
       border: 1px solid var(--border-color);
       color: var(--text-primary);
       border-radius: 4px;
-      width: 150px;
+      width: 140px;
     }
     
     .search-input::placeholder {
@@ -143,7 +146,7 @@
     }
     
     .toggle-btn {
-      padding: 6px 12px;
+      padding: 5px 10px;
       font-size: 11px;
       background: transparent;
       border: 1px solid var(--border-color);
@@ -155,7 +158,7 @@
     /* ===== METRICS BAR ===== */
     .metrics-bar {
       position: fixed;
-      top: 52px;
+      top: var(--header-height);
       left: 0;
       right: 0;
       z-index: 999;
@@ -163,166 +166,210 @@
       border-bottom: 1px solid var(--border-color);
       padding: 10px 24px;
       display: flex;
-      gap: 32px;
-      font-size: 12px;
-      overflow-x: auto;
+      gap: 24px;
+      font-size: 11px;
+      height: var(--metrics-height);
+      align-items: center;
     }
     
     .metric span {
       color: var(--text-muted);
-      margin-right: 6px;
+      margin-right: 4px;
     }
     
-    /* ===== MAIN CONTAINER ===== */
-    .main-container {
-      margin-top: 100px;
-      display: flex;
-      position: relative;
-    }
-    
-    /* ===== STICKY LEFT COLUMNS ===== */
-    .sticky-left {
-      position: sticky;
-      left: 0;
-      z-index: 100;
-      background: var(--bg-primary);
-      min-width: var(--sticky-width);
-      max-width: var(--sticky-width);
-      border-right: 2px solid var(--accent-gold);
-    }
-    
-    /* ===== SCROLLABLE RIGHT ===== */
-    .scroll-right {
-      flex: 1;
+    /* ===== TABLE CONTAINER ===== */
+    .table-wrapper {
+      margin-top: var(--total-fixed-height);
       overflow-x: auto;
-      min-width: 0;
+      overflow-y: visible;
     }
     
-    .scroll-content {
-      min-width: 1500px;
+    .timeline-table {
+      border-collapse: collapse;
+      width: max-content;
+      min-width: 100%;
+    }
+    
+    .timeline-table th,
+    .timeline-table td {
+      border: 1px solid var(--border-color);
+      padding: 10px 8px;
+      font-size: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    
+    /* ===== STICKY COLUMNS ===== */
+    .col-swimlane { 
+      position: sticky; 
+      left: 0; 
+      z-index: 20; 
+      min-width: 150px; 
+      max-width: 150px;
+      background: var(--bg-primary);
+    }
+    
+    .col-thinking { 
+      position: sticky; 
+      left: 150px; 
+      z-index: 20; 
+      min-width: 160px; 
+      max-width: 160px;
+      background: var(--bg-primary);
+    }
+    
+    .col-platforms { 
+      position: sticky; 
+      left: 310px; 
+      z-index: 20; 
+      min-width: 180px; 
+      max-width: 180px;
+      background: var(--bg-primary);
+    }
+    
+    .col-budget { 
+      position: sticky; 
+      left: 490px; 
+      z-index: 20; 
+      min-width: 120px; 
+      max-width: 120px;
+      background: var(--bg-primary);
+      border-right: 3px solid var(--accent-gold) !important;
     }
     
     /* ===== HEADER ROW ===== */
-    .header-row {
-      display: flex;
-      background: var(--bg-tertiary);
+    .timeline-table thead th {
       position: sticky;
-      top: 100px;
-      z-index: 99;
-    }
-    
-    .header-cell {
-      padding: 12px 10px;
-      font-size: 10px;
+      top: var(--total-fixed-height);
+      z-index: 30;
+      background: var(--bg-tertiary);
       font-weight: 600;
-      text-align: center;
-      color: var(--text-secondary);
+      text-transform: uppercase;
       letter-spacing: 0.05em;
-      border-bottom: 1px solid var(--border-color);
-      flex-shrink: 0;
-    }
-    
-    .header-cell.sticky-col { background: var(--bg-tertiary); }
-    .col-swimlane { width: 160px; }
-    .col-thinking { width: 180px; }
-    .col-platforms { width: 200px; }
-    .col-budget { width: 140px; }
-    .col-month { width: 100px; }
-    .col-end { width: 180px; }
-    
-    /* Quarter labels in header */
-    .quarter-header {
-      display: flex;
-    }
-    
-    .quarter-label {
-      flex: 1;
+      color: var(--text-secondary);
       text-align: center;
-      padding: 6px;
+    }
+    
+    .timeline-table thead th.col-swimlane,
+    .timeline-table thead th.col-thinking,
+    .timeline-table thead th.col-platforms,
+    .timeline-table thead th.col-budget {
+      z-index: 40;
+      text-align: left;
+    }
+    
+    /* ===== QUARTER HEADER ===== */
+    .quarter-row th {
+      padding: 6px 8px;
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.1em;
+      text-align: center;
     }
     
-    .quarter-label.q1 { background: rgba(74, 154, 122, 0.2); color: #4a9a7a; }
-    .quarter-label.q2 { background: rgba(154, 122, 74, 0.2); color: #9a7a4a; }
-    .quarter-label.q3 { background: rgba(122, 74, 154, 0.2); color: #7a4a9a; }
-    .quarter-label.q4 { background: rgba(154, 74, 74, 0.2); color: #9a4a4a; }
+    .quarter-row th.q1 { background: rgba(74, 154, 122, 0.25); color: #4a9a7a; }
+    .quarter-row th.q2 { background: rgba(154, 122, 74, 0.25); color: #9a7a4a; }
+    .quarter-row th.q3 { background: rgba(122, 74, 154, 0.25); color: #7a4a9a; }
+    .quarter-row th.q4 { background: rgba(154, 74, 74, 0.25); color: #9a4a4a; }
     
-    /* ===== TIER DIVIDER ===== */
-    .tier-divider {
-      display: flex;
-      cursor: pointer;
-      transition: opacity 0.2s;
+    /* ===== MONTH COLUMNS ===== */
+    .col-month {
+      min-width: 85px;
+      max-width: 85px;
+      text-align: center;
+      vertical-align: middle;
     }
     
-    .tier-divider:hover {
-      opacity: 0.8;
+    /* ===== END COLUMNS ===== */
+    .col-milestones {
+      min-width: 180px;
+      max-width: 180px;
+      background: rgba(232, 213, 183, 0.08);
+      color: var(--accent-gold);
     }
     
-    .tier-divider-content {
+    .col-dependencies {
+      min-width: 180px;
+      max-width: 180px;
+      background: rgba(100, 150, 255, 0.08);
+      color: #8ab4ff;
+    }
+    
+    .col-risk {
+      min-width: 180px;
+      max-width: 180px;
+      background: rgba(255, 100, 100, 0.08);
+      color: #ff9999;
+    }
+    
+    .col-risk.low-risk {
+      background: rgba(255,255,255,0.02);
+      color: var(--text-muted);
+    }
+    
+    .col-risk.critical-risk {
+      background: rgba(255, 50, 50, 0.15);
+      color: #ff6666;
+      font-weight: 600;
+    }
+    
+    /* ===== TIER DIVIDER ROW ===== */
+    .tier-divider-row td {
       padding: 10px 16px;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.1em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      width: 100%;
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
     
-    .tier-divider-content .collapse-icon {
+    .tier-divider-row:hover td {
+      opacity: 0.85;
+    }
+    
+    .tier-divider-row.tier-acquisition td { background: var(--acquisition-bg); color: var(--acquisition-text); }
+    .tier-divider-row.tier-consideration td { background: var(--consideration-bg); color: var(--consideration-text); }
+    .tier-divider-row.tier-conversion td { background: var(--conversion-bg); color: var(--conversion-text); }
+    .tier-divider-row.tier-retention td { background: var(--retention-bg); color: var(--retention-text); }
+    
+    .collapse-icon {
+      display: inline-block;
+      margin-right: 8px;
       transition: transform 0.3s;
     }
     
-    .tier-divider.collapsed .collapse-icon {
+    .tier-divider-row.collapsed .collapse-icon {
       transform: rotate(-90deg);
     }
     
-    .tier-acquisition .tier-divider-content { background: var(--acquisition); color: var(--acquisition-text); }
-    .tier-consideration .tier-divider-content { background: var(--consideration); color: var(--consideration-text); }
-    .tier-conversion .tier-divider-content { background: var(--conversion); color: var(--conversion-text); }
-    .tier-retention .tier-divider-content { background: var(--retention); color: var(--retention-text); }
-    
     /* ===== SWIMLANE ROWS ===== */
-    .swimlane-row {
-      display: flex;
-      border-bottom: 1px solid var(--border-color);
-      transition: max-height 0.3s ease, opacity 0.3s ease;
-      overflow: hidden;
-    }
+    .swimlane-row.tier-acquisition .col-swimlane,
+    .swimlane-row.tier-acquisition .col-thinking,
+    .swimlane-row.tier-acquisition .col-platforms,
+    .swimlane-row.tier-acquisition .col-budget { background: var(--acquisition-bg); }
+    
+    .swimlane-row.tier-consideration .col-swimlane,
+    .swimlane-row.tier-consideration .col-thinking,
+    .swimlane-row.tier-consideration .col-platforms,
+    .swimlane-row.tier-consideration .col-budget { background: var(--consideration-bg); }
+    
+    .swimlane-row.tier-conversion .col-swimlane,
+    .swimlane-row.tier-conversion .col-thinking,
+    .swimlane-row.tier-conversion .col-platforms,
+    .swimlane-row.tier-conversion .col-budget { background: var(--conversion-bg); }
+    
+    .swimlane-row.tier-retention .col-swimlane,
+    .swimlane-row.tier-retention .col-thinking,
+    .swimlane-row.tier-retention .col-platforms,
+    .swimlane-row.tier-retention .col-budget { background: var(--retention-bg); }
     
     .swimlane-row.hidden {
-      max-height: 0;
-      opacity: 0;
-      border-bottom: none;
+      display: none;
     }
     
     .swimlane-row.filtered-out {
       display: none;
     }
-    
-    .swimlane-cell {
-      padding: 12px 10px;
-      font-size: 10px;
-      line-height: 1.5;
-      flex-shrink: 0;
-      border-right: 1px solid var(--border-color);
-    }
-    
-    .swimlane-cell:last-child {
-      border-right: none;
-    }
-    
-    /* Sticky column cells */
-    .swimlane-cell.sticky-col {
-      background: var(--bg-primary);
-    }
-    
-    .tier-acquisition .swimlane-cell.sticky-col { background: var(--acquisition); border-color: var(--acquisition-border); }
-    .tier-consideration .swimlane-cell.sticky-col { background: var(--consideration); border-color: var(--consideration-border); }
-    .tier-conversion .swimlane-cell.sticky-col { background: var(--conversion); border-color: var(--conversion-border); }
-    .tier-retention .swimlane-cell.sticky-col { background: var(--retention); border-color: var(--retention-border); }
     
     .swimlane-name {
       font-weight: 600;
@@ -334,7 +381,8 @@
       letter-spacing: 0.1em;
       opacity: 0.7;
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
+      text-transform: uppercase;
     }
     
     .customer-thinking {
@@ -347,16 +395,12 @@
       white-space: pre-line;
     }
     
-    /* Month cells */
+    /* ===== MONTH CELLS ===== */
     .month-cell {
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 70px;
+      vertical-align: middle;
+      min-height: 60px;
       position: relative;
-      cursor: default;
     }
     
     .month-cell.empty {
@@ -364,90 +408,45 @@
       color: var(--text-muted);
     }
     
+    .month-cell.milestone {
+      background: rgba(232, 213, 183, 0.12);
+    }
+    
     .month-cell.current-month {
       box-shadow: inset 0 0 0 2px var(--accent-orange);
-    }
-    
-    .month-cell.milestone {
-      background: rgba(232, 213, 183, 0.15);
-    }
-    
-    .month-cell .activity {
-      font-size: 9px;
-      color: var(--text-secondary);
     }
     
     .month-cell .milestone-marker {
       color: var(--accent-gold);
       font-weight: 600;
       font-size: 10px;
+      display: block;
       margin-bottom: 2px;
+    }
+    
+    .month-cell .activity {
+      font-size: 9px;
+      color: var(--text-secondary);
+      display: block;
     }
     
     .intensity-bar {
       height: 4px;
       border-radius: 2px;
-      margin-top: 8px;
+      margin: 6px auto 0;
       background: rgba(255,255,255,0.1);
-      transition: width 0.3s;
     }
     
+    .intensity-0 { width: 0; }
     .intensity-1 { width: 20%; background: rgba(255,255,255,0.15); }
     .intensity-2 { width: 40%; background: rgba(255,255,255,0.25); }
     .intensity-3 { width: 60%; background: rgba(255,255,255,0.35); }
     .intensity-4 { width: 80%; background: rgba(255,255,255,0.45); }
     .intensity-5 { width: 100%; background: rgba(255,255,255,0.55); }
     
-    /* End columns */
-    .milestones-cell {
-      background: rgba(232, 213, 183, 0.1);
-      color: var(--accent-gold);
-      white-space: pre-line;
-    }
-    
-    .dependencies-cell {
-      background: rgba(100, 150, 255, 0.1);
-      color: #8ab4ff;
-      white-space: pre-line;
-    }
-    
-    .risk-cell {
-      background: rgba(255, 100, 100, 0.1);
-      color: #ff9999;
-      white-space: pre-line;
-    }
-    
-    .risk-cell.low-risk {
-      background: rgba(255,255,255,0.02);
-      color: var(--text-muted);
-    }
-    
-    .risk-cell.critical-risk {
-      background: rgba(255, 50, 50, 0.2);
-      color: #ff6666;
-      font-weight: 600;
-    }
-    
-    /* Gate lines */
-    .gate-indicator {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--accent-orange);
-      z-index: 50;
-    }
-    
-    .gate-indicator::before {
-      content: attr(data-label);
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 8px;
-      color: var(--accent-orange);
-      white-space: nowrap;
-      font-weight: 600;
+    /* ===== GATE COLUMNS ===== */
+    .gate-after {
+      border-right: 3px solid var(--accent-orange) !important;
     }
     
     /* ===== STICKY NOTES ===== */
@@ -495,42 +494,18 @@
       color: var(--text-muted);
     }
     
-    /* ===== HOVER TOOLTIP ===== */
-    .tooltip {
-      position: fixed;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 12px 16px;
-      font-size: 11px;
-      max-width: 300px;
-      z-index: 2000;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    
-    .tooltip.visible {
-      opacity: 1;
-    }
-    
-    .tooltip-title {
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--accent-gold);
-    }
-    
-    .tooltip-row {
-      margin-bottom: 4px;
-    }
-    
-    .tooltip-label {
-      color: var(--text-muted);
-    }
-    
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 1200px) {
+    @media (max-width: 1400px) {
+      .nav-center {
+        gap: 4px;
+      }
+      .nav-btn {
+        padding: 4px 8px;
+        font-size: 10px;
+      }
+    }
+    
+    @media (max-width: 1100px) {
       .nav-center {
         display: none;
       }
@@ -544,10 +519,10 @@
     <div class="nav-title">The Renatural — 2026 Timeline</div>
     
     <div class="nav-center">
-      <button class="nav-btn" onclick="scrollToQuarter('q1')">Q1</button>
-      <button class="nav-btn" onclick="scrollToQuarter('q2')">Q2</button>
-      <button class="nav-btn" onclick="scrollToQuarter('q3')">Q3</button>
-      <button class="nav-btn" onclick="scrollToQuarter('q4')">Q4</button>
+      <button class="nav-btn" onclick="scrollToQuarter('jan')">Q1</button>
+      <button class="nav-btn" onclick="scrollToQuarter('apr')">Q2</button>
+      <button class="nav-btn" onclick="scrollToQuarter('jul')">Q3</button>
+      <button class="nav-btn" onclick="scrollToQuarter('oct')">Q4</button>
       
       <div class="nav-divider"></div>
       
@@ -571,15 +546,12 @@
   <!-- Metrics Bar -->
   <div class="metrics-bar" id="metricsBar"></div>
   
-  <!-- Main Container -->
-  <div class="main-container">
-    <!-- Sticky Left Columns -->
-    <div class="sticky-left" id="stickyLeft"></div>
-    
-    <!-- Scrollable Right Content -->
-    <div class="scroll-right">
-      <div class="scroll-content" id="scrollContent"></div>
-    </div>
+  <!-- Table Container -->
+  <div class="table-wrapper">
+    <table class="timeline-table" id="timelineTable">
+      <thead id="tableHead"></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
   </div>
   
   <!-- Sticky Notes -->
@@ -588,18 +560,13 @@
   <!-- Footer -->
   <div class="footer" id="footer"></div>
   
-  <!-- Tooltip -->
-  <div class="tooltip" id="tooltip">
-    <div class="tooltip-title"></div>
-    <div class="tooltip-body"></div>
-  </div>
-  
   <!-- Load Data -->
   <script src="data.js"></script>
   
   <script>
     const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
     const MONTH_LABELS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    const GATE_AFTER = ['mar', 'jun', 'sep']; // Gates after these months
     
     let collapsedTiers = {};
     let milestonesOnly = false;
@@ -607,7 +574,7 @@
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       renderMetrics();
-      renderTimeline();
+      renderTable();
       renderStickyNotes();
       renderFooter();
       highlightCurrentMonth();
@@ -627,114 +594,82 @@
       `;
     }
     
-    function renderTimeline() {
-      const stickyLeft = document.getElementById('stickyLeft');
-      const scrollContent = document.getElementById('scrollContent');
+    function renderTable() {
+      const thead = document.getElementById('tableHead');
+      const tbody = document.getElementById('tableBody');
       
-      let stickyHTML = '';
-      let scrollHTML = '';
-      
-      // Header row
-      stickyHTML += `
-        <div class="header-row">
-          <div class="header-cell sticky-col col-swimlane">SWIMLANE</div>
-          <div class="header-cell sticky-col col-thinking">CUSTOMER THINKING</div>
-          <div class="header-cell sticky-col col-platforms">PLATFORMS & PLACEMENTS</div>
-          <div class="header-cell sticky-col col-budget">BUDGET / ROLE</div>
-        </div>
+      // Build header - Quarter row
+      let quarterRow = `
+        <tr class="quarter-row">
+          <th class="col-swimlane" rowspan="2">Swimlane</th>
+          <th class="col-thinking" rowspan="2">Customer Thinking</th>
+          <th class="col-platforms" rowspan="2">Platforms & Placements</th>
+          <th class="col-budget" rowspan="2">Budget / Role</th>
+          <th colspan="3" class="q1">${CONFIG.quarters.q1.label} (${CONFIG.quarters.q1.budget})</th>
+          <th colspan="3" class="q2">${CONFIG.quarters.q2.label} (${CONFIG.quarters.q2.budget})</th>
+          <th colspan="3" class="q3">${CONFIG.quarters.q3.label} (${CONFIG.quarters.q3.budget})</th>
+          <th colspan="3" class="q4">${CONFIG.quarters.q4.label} (${CONFIG.quarters.q4.budget})</th>
+          <th class="col-milestones" rowspan="2">Key Milestones</th>
+          <th class="col-dependencies" rowspan="2">Dependencies</th>
+          <th class="col-risk" rowspan="2">Risk if Late</th>
+        </tr>
       `;
       
-      scrollHTML += `
-        <div class="header-row">
-          <div class="quarter-header">
-            <div class="quarter-label q1">${CONFIG.quarters.q1.label} (${CONFIG.quarters.q1.budget})</div>
-            <div class="quarter-label q2">${CONFIG.quarters.q2.label} (${CONFIG.quarters.q2.budget})</div>
-            <div class="quarter-label q3">${CONFIG.quarters.q3.label} (${CONFIG.quarters.q3.budget})</div>
-            <div class="quarter-label q4">${CONFIG.quarters.q4.label} (${CONFIG.quarters.q4.budget})</div>
-          </div>
-        </div>
-        <div class="header-row">
-          ${MONTH_LABELS.map((m, i) => `<div class="header-cell col-month" data-month="${MONTHS[i]}">${m}</div>`).join('')}
-          <div class="header-cell col-end">KEY MILESTONES</div>
-          <div class="header-cell col-end">DEPENDENCIES</div>
-          <div class="header-cell col-end">RISK IF LATE</div>
-        </div>
-      `;
+      // Month row
+      let monthRow = '<tr>';
+      MONTHS.forEach((month, i) => {
+        const isGate = GATE_AFTER.includes(month);
+        monthRow += `<th class="col-month ${isGate ? 'gate-after' : ''}" data-month="${month}">${MONTH_LABELS[i]}</th>`;
+      });
+      monthRow += '</tr>';
       
-      // Render each tier
+      thead.innerHTML = quarterRow + monthRow;
+      
+      // Build body
+      let bodyHTML = '';
+      
       TIERS.forEach(tier => {
         const tierSwimlanes = SWIMLANES.filter(s => s.tier === tier.id);
         
-        // Tier divider
-        stickyHTML += `
-          <div class="tier-divider tier-${tier.id}" id="tier-${tier.id}" onclick="toggleTier('${tier.id}')">
-            <div class="tier-divider-content">
+        // Tier divider row
+        bodyHTML += `
+          <tr class="tier-divider-row tier-${tier.id}" id="tier-${tier.id}" onclick="toggleTier('${tier.id}')">
+            <td colspan="19">
               <span class="collapse-icon">▼</span>
               ${tier.name} — ${tier.budget}
-            </div>
-          </div>
-        `;
-        
-        scrollHTML += `
-          <div class="tier-divider tier-${tier.id}">
-            <div class="tier-divider-content" style="visibility: hidden;">
-              ${tier.name}
-            </div>
-          </div>
+            </td>
+          </tr>
         `;
         
         // Swimlane rows
         tierSwimlanes.forEach(swimlane => {
-          stickyHTML += renderStickyRow(swimlane, tier.id);
-          scrollHTML += renderScrollRow(swimlane, tier.id);
+          bodyHTML += renderSwimlaneRow(swimlane, tier.id);
         });
       });
       
-      stickyLeft.innerHTML = stickyHTML;
-      scrollContent.innerHTML = scrollHTML;
+      tbody.innerHTML = bodyHTML;
     }
     
-    function renderStickyRow(swimlane, tierId) {
-      return `
-        <div class="swimlane-row tier-${tierId}" data-tier="${tierId}" data-swimlane="${swimlane.id}">
-          <div class="swimlane-cell sticky-col col-swimlane">
-            <span class="stage-tag">${tierId.toUpperCase()}</span>
-            <span class="swimlane-name">${swimlane.name}</span>
-          </div>
-          <div class="swimlane-cell sticky-col col-thinking customer-thinking">${swimlane.customerThinking}</div>
-          <div class="swimlane-cell sticky-col col-platforms platforms">${swimlane.platforms}</div>
-          <div class="swimlane-cell sticky-col col-budget">
-            <strong>${swimlane.budget}</strong><br>
-            ${swimlane.role}
-          </div>
-        </div>
-      `;
-    }
-    
-    function renderScrollRow(swimlane, tierId) {
+    function renderSwimlaneRow(swimlane, tierId) {
       let monthCells = '';
       
       MONTHS.forEach(month => {
         const data = swimlane.months[month] || { activity: '—', intensity: 0 };
         const isEmpty = data.intensity === 0;
         const hasMilestone = data.milestone;
+        const isGate = GATE_AFTER.includes(month);
         
-        let classes = 'swimlane-cell col-month month-cell';
+        let classes = 'col-month month-cell';
         if (isEmpty) classes += ' empty';
         if (hasMilestone) classes += ' milestone';
+        if (isGate) classes += ' gate-after';
         
         monthCells += `
-          <div class="${classes}" 
-               data-month="${month}"
-               data-swimlane="${swimlane.name}"
-               data-activity="${data.activity}"
-               data-milestone="${data.milestone || ''}"
-               onmouseenter="showTooltip(event, this)"
-               onmouseleave="hideTooltip()">
+          <td class="${classes}" data-month="${month}">
             ${hasMilestone ? `<span class="milestone-marker">${data.milestone}</span>` : ''}
             <span class="activity">${data.activity}</span>
-            ${data.intensity > 0 ? `<div class="intensity-bar intensity-${data.intensity}"></div>` : ''}
-          </div>
+            <div class="intensity-bar intensity-${data.intensity}"></div>
+          </td>
         `;
       });
       
@@ -742,12 +677,22 @@
                         swimlane.riskLevel === 'critical' ? 'critical-risk' : '';
       
       return `
-        <div class="swimlane-row tier-${tierId}" data-tier="${tierId}" data-swimlane="${swimlane.id}">
+        <tr class="swimlane-row tier-${tierId}" data-tier="${tierId}" data-swimlane="${swimlane.id}" data-name="${swimlane.name.toLowerCase()}">
+          <td class="col-swimlane">
+            <span class="stage-tag">${tierId}</span>
+            <span class="swimlane-name">${swimlane.name}</span>
+          </td>
+          <td class="col-thinking customer-thinking">${swimlane.customerThinking}</td>
+          <td class="col-platforms platforms">${swimlane.platforms}</td>
+          <td class="col-budget">
+            <strong>${swimlane.budget}</strong><br>
+            ${swimlane.role}
+          </td>
           ${monthCells}
-          <div class="swimlane-cell col-end milestones-cell">${swimlane.milestones}</div>
-          <div class="swimlane-cell col-end dependencies-cell">${swimlane.dependencies}</div>
-          <div class="swimlane-cell col-end risk-cell ${riskClass}">${swimlane.risk}</div>
-        </div>
+          <td class="col-milestones">${swimlane.milestones.replace(/\n/g, '<br>')}</td>
+          <td class="col-dependencies">${swimlane.dependencies.replace(/\n/g, '<br>')}</td>
+          <td class="col-risk ${riskClass}">${swimlane.risk.replace(/\n/g, '<br>')}</td>
+        </tr>
       `;
     }
     
@@ -768,10 +713,8 @@
     function highlightCurrentMonth() {
       const now = new Date();
       const currentMonth = MONTHS[now.getMonth()];
-      document.querySelectorAll(`[data-month="${currentMonth}"]`).forEach(el => {
-        if (el.classList.contains('month-cell')) {
-          el.classList.add('current-month');
-        }
+      document.querySelectorAll(`td[data-month="${currentMonth}"]`).forEach(el => {
+        el.classList.add('current-month');
       });
     }
     
@@ -782,9 +725,8 @@
       const isCollapsed = collapsedTiers[tierId];
       
       // Update divider icon
-      document.querySelectorAll(`.tier-divider.tier-${tierId}`).forEach(el => {
-        el.classList.toggle('collapsed', isCollapsed);
-      });
+      const divider = document.getElementById(`tier-${tierId}`);
+      divider.classList.toggle('collapsed', isCollapsed);
       
       // Show/hide rows
       document.querySelectorAll(`.swimlane-row[data-tier="${tierId}"]`).forEach(el => {
@@ -793,12 +735,14 @@
     }
     
     function toggleAllTiers() {
-      const anyExpanded = Object.values(collapsedTiers).some(v => !v);
+      const anyExpanded = TIERS.some(tier => !collapsedTiers[tier.id]);
+      
       TIERS.forEach(tier => {
         collapsedTiers[tier.id] = anyExpanded;
-        document.querySelectorAll(`.tier-divider.tier-${tier.id}`).forEach(el => {
-          el.classList.toggle('collapsed', anyExpanded);
-        });
+        
+        const divider = document.getElementById(`tier-${tier.id}`);
+        if (divider) divider.classList.toggle('collapsed', anyExpanded);
+        
         document.querySelectorAll(`.swimlane-row[data-tier="${tier.id}"]`).forEach(el => {
           el.classList.toggle('hidden', anyExpanded);
         });
@@ -809,7 +753,7 @@
       milestonesOnly = !milestonesOnly;
       document.querySelectorAll('.month-cell').forEach(el => {
         if (milestonesOnly) {
-          el.style.opacity = el.classList.contains('milestone') ? '1' : '0.2';
+          el.style.opacity = el.classList.contains('milestone') ? '1' : '0.15';
         } else {
           el.style.opacity = '1';
         }
@@ -817,58 +761,43 @@
     }
     
     function filterSwimlanes(query) {
-      const q = query.toLowerCase();
+      const q = query.toLowerCase().trim();
       document.querySelectorAll('.swimlane-row').forEach(row => {
-        const swimlaneName = row.querySelector('.swimlane-name');
-        if (swimlaneName) {
-          const name = swimlaneName.textContent.toLowerCase();
-          row.classList.toggle('filtered-out', q && !name.includes(q));
-        }
+        const name = row.dataset.name || '';
+        row.classList.toggle('filtered-out', q && !name.includes(q));
       });
     }
     
-    function scrollToQuarter(quarter) {
-      const monthIndex = { q1: 0, q2: 3, q3: 6, q4: 9 }[quarter];
-      const month = MONTHS[monthIndex];
-      const el = document.querySelector(`.scroll-content [data-month="${month}"]`);
-      if (el) {
-        document.querySelector('.scroll-right').scrollLeft = el.offsetLeft - 100;
+    function scrollToQuarter(month) {
+      const firstCell = document.querySelector(`thead th[data-month="${month}"]`);
+      if (firstCell) {
+        const wrapper = document.querySelector('.table-wrapper');
+        // Calculate position accounting for sticky columns
+        const stickyWidth = 610; // Width of 4 sticky columns
+        wrapper.scrollLeft = firstCell.offsetLeft - stickyWidth - 10;
       }
     }
     
     function scrollToTier(tierId) {
       const el = document.getElementById(`tier-${tierId}`);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Expand tier if collapsed
+        if (collapsedTiers[tierId]) {
+          toggleTier(tierId);
+        }
+        
+        // Scroll with offset for fixed header
+        const offset = 150; // header + metrics + some buffer
+        const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        });
       }
     }
     
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
-    }
-    
-    // ===== TOOLTIP =====
-    
-    function showTooltip(event, el) {
-      const tooltip = document.getElementById('tooltip');
-      const swimlane = el.dataset.swimlane;
-      const month = el.dataset.month.toUpperCase();
-      const activity = el.dataset.activity;
-      const milestone = el.dataset.milestone;
-      
-      tooltip.querySelector('.tooltip-title').textContent = `${swimlane} — ${month}`;
-      tooltip.querySelector('.tooltip-body').innerHTML = `
-        <div class="tooltip-row"><span class="tooltip-label">Activity:</span> ${activity}</div>
-        ${milestone ? `<div class="tooltip-row"><span class="tooltip-label">Milestone:</span> ${milestone}</div>` : ''}
-      `;
-      
-      tooltip.style.left = event.pageX + 15 + 'px';
-      tooltip.style.top = event.pageY + 15 + 'px';
-      tooltip.classList.add('visible');
-    }
-    
-    function hideTooltip() {
-      document.getElementById('tooltip').classList.remove('visible');
     }
   </script>
 </body>
